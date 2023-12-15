@@ -5,6 +5,7 @@ pragma solidity ^0.8.18 ;
 contract ProposalContract{
 
 address proposalOwner;
+uint private counter;
 
 struct Proposal{
 
@@ -20,6 +21,12 @@ struct Proposal{
 }
 
 mapping(uint=>Proposal) proposal_history;
+
+function create(string calldata _title,string calldata _description,uint _total_vote_to_end) external{
+
+    counter += 1;
+    proposal_history[counter] = Proposal(_title,_description,0,0,0,_total_vote_to_end,false,true);
+}
 
 
 
