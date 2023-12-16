@@ -109,13 +109,29 @@ function calculateCurrentState() private view returns(bool){
 
 function isVoted(address _address)private view returns(bool){
 
-        
+        for(uint i=0;i<voter_addresses.length;i++){
+                if(voter_addresses[i]==_address){
+                    return true;
+                }
+
+
+        }
+        return false;
 
 }
 
 function terminateProposal()external onlyOwner isActive{
 
     proposal_history[counter].is_active = false;
+}
+
+function getCurrentProposal()external view returns(Proposal memory){
+
+    return proposal_history[counter];
+}
+
+function getProposal(uint number) external view returns(Proposal memory){
+    return proposal_history[number];
 }
 
 }
